@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link 
+  rel="stylesheet" 
+  type="text/css" 
+  href="{% static 'css/characters/character-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+
+<section class="character-container">
+  <div class="character-img">
+    <img 
+      src="" 
+      alt="A beloved character"
+    >
+  </div>
+  <div class="character-details">
+    <h1>{{ character.name }}</h1>
+    <p>Age: {{ character.age }}</p>
+    <p>{{ character.pronoun }} comes from {{ character.media }}.</p>
+    <p><small>{{ character.description }}</small></p>
+    <div class="character-actions">
+      <a href="{% url 'characters_update' character.id%}" class="btn warn">Edit</a>
+      <a href="{% url 'characters_delete' character.id%}" class="btn danger">Delete</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

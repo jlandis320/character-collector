@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/characters/character-index.css' %}"
+/>
+{% endblock %} {% block content %}
+
+<section class="page-header">
+  <h1>Character List</h1>
+  <img src="" />
+  <img src="" />
+  <img src="" />
+  <img src="" />
+</section>
+
+<section class="card-container">
+  {% for character in characters %}
+  <div class="card">
+    <a href="/characters/{{ character.id }}">
+      <div class="card-content">
+        <div class="card-img-container">
+          <img src="" alt="a picture of a character" />
+        </div>
+        <h2 class="card-title">{{ character.name }}</h2>
+        <p>Age: {{ character.age }}</p>
+        <p>{{ character.pronoun }} comes from {{ character.media }}.</p>
+        <p><small>{{ character.description }}</small></p>
+      </div>
+    </a>
+  </div>
+  {% endfor %}
+</section>
+
+{% endblock %}
