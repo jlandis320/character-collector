@@ -11,4 +11,6 @@ urlpatterns = [
     path('characters/<int:pk>/delete', views.CharacterDelete.as_view(), name='characters_delete'),
     path('characters/<int:character_id>/add_title/', views.add_title, name='add_title'),
     path('medium/create/', views.MediumCreate.as_view(), name='medium_create'),
+    path('medium/<int:pk>/', views.MediumDetail.as_view(), name='medium_detail'),
+    path('mediums/', views.MediumList.as_view(), name='medium_index'),
 ]

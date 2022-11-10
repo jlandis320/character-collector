@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 from .models import Character, Medium
 from .forms import TitleForm
 
@@ -19,6 +20,12 @@ class CharacterDelete(DeleteView):
 class MediumCreate(CreateView):
   model = Medium
   fields = '__all__'
+
+class MediumList(ListView):
+  model = Medium
+
+class MediumDetail(ListView):
+  model = Medium
 
 def home(request):
   return render(request, 'home.html')
