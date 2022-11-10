@@ -35,5 +35,5 @@ class Medium(models.Model):
       return self.medium
 
   def get_absolute_url(self):
-    return reverse('toys_detail', kwargs={'pk': self.id})
+    return reverse('medium_detail', kwargs={'pk': self.id})
   

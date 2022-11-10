@@ -24,8 +24,16 @@ class MediumCreate(CreateView):
 class MediumList(ListView):
   model = Medium
 
-class MediumDetail(ListView):
+class MediumDetail(DetailView):
   model = Medium
+
+class MediumUpdate(UpdateView):
+  model = Medium
+  fields = ['medium', 'color']
+
+class MediumDelete(DeleteView):
+  model = Medium
+  success_url = '/mediums/'
 
 def home(request):
   return render(request, 'home.html')

@@ -1,0 +1,24 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+{% block head %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{% static 'css/toys/medium-detail.css' %}"
+/>
+{% endblock %}
+
+{% block content %}
+  
+<div class="card" style="border-color: {{ medium.color }}">
+  <div class="card-bg" style="background-color: {{ medium.color }}"></div>
+  <div class="card-content">
+    <h2>{{ medium.medium }}</h2>
+    <p>A {{ medium.color }} toy</p>
+  </div>
+</div>
+<a href="{% url 'medium_update' medium.id %}" class="btn warn">Edit</a>
+<a href="{% url 'medium_delete' medium.id %}" class="btn danger">Delete</a>
+
+{% endblock %}
