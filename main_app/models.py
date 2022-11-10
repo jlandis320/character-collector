@@ -2,12 +2,23 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
+class Medium(models.Model):
+  medium = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+      return self.medium
+
+  def get_absolute_url(self):
+    return reverse('medium_detail', kwargs={'pk': self.id})
+
 class Character(models.Model):
   name = models.CharField(max_length=100)
   media = models.CharField(max_length=100)
   description = models.TextField(max_length=250)
   age = models.CharField(max_length=20)
   pronoun = models.CharField(max_length=10)
+  medium = models.ManyToManyField(Medium)
 
   def __str__(self):
     return self.name
@@ -27,13 +38,5 @@ class Title(models.Model):
   class Meta: 
     ordering = ['-date']
 
-class Medium(models.Model):
-  medium = models.CharField(max_length=50)
-  color = models.CharField(max_length=20)
 
-  def __str__(self):
-      return self.medium
-
-  def get_absolute_url(self):
-    return reverse('medium_detail', kwargs={'pk': self.id})
   

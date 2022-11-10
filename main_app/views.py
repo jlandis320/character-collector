@@ -7,7 +7,7 @@ from .forms import TitleForm
 
 class CharacterCreate(CreateView):
   model = Character
-  fields = '__all__'
+  fields = ['name', 'media', 'description', 'age', 'pronoun']
 
 class CharacterUpdate(UpdateView):
   model = Character
