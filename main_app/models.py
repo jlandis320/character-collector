@@ -26,3 +26,14 @@ class Title(models.Model):
   
   class Meta: 
     ordering = ['-date']
+
+class Medium(models.Model):
+  medium = models.CharField(max_length=50)
+  color = models.CharField(max_length=20)
+
+  def __str__(self):
+      return self.medium
+
+  def get_absolute_url(self):
+    return reverse('toys_detail', kwargs={'pk': self.id})
+  
