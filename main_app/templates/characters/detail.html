@@ -105,7 +105,7 @@
               style="background-color: {{ medium.color }}"
             ></div>
             <a href="{% url 'medium_detail' medium.id %}">
-              <p>A {{ medium.color }} {{ medium.medium }}</p>
+              <p>{{ medium.medium }}</p>
             </a>
           </div>
         {% endfor %}
@@ -115,7 +115,33 @@
     </div>
     <h3>Available Mediums</h3>
     <div class="subsection-content">
-      {% comment %} We'll display available toys here {% endcomment %}
+      <h3>Available Toys</h3>
+      <div class="subsection-content">
+        {% comment %} We'll display available toys here {% endcomment %}
+        {% if medium.count %}
+          {% for medium in medium.all %}
+            <div class="medium-container">
+              <div 
+                class="color-block"
+                style="background-color: {{ medium.color }}"
+              ></div>
+              <a href="{% url 'medium_detail' medium.id %}">
+                <p> {{ medium.medium }}</p>
+              </a>
+              <form action="{% url 'assoc_medium' character.id medium.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn submit">Add medium</button>
+              </form>
+            </div>
+          {% endfor %}
+        {% else %}
+          <p class="all-toys">
+            {{character.name}} already has all the available mediums 🥳
+          </p>
+        {% endif %}
+      </div>
+    </section>
+  </div>
     </div>
   </section>
 

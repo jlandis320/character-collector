@@ -47,8 +47,9 @@ def characters_index(request):
 
 def characters_detail(request, character_id):
   character = Character.objects.get(id=character_id)
+  medium_character_doesnt_have = Medium.objects.exclude(id__in = character.medium.all().values_list('id'))
   title_form = TitleForm()
-  return render(request, 'characters/detail.html', {'character' : character, 'title_form': title_form})
+  return render(request, 'characters/detail.html', {'character' : character, 'title_form': title_form, 'medium': medium_character_doesnt_have})
 
 def add_title(request, character_id):
   form = TitleForm(request.POST)
@@ -58,3 +59,6 @@ def add_title(request, character_id):
     new_title.save()
   return redirect('characters_detail', character_id=character_id)
 
+def assoc_medium(request, character_id, medium_id):
+  Character.objects.get(id=character_id).medium.add(medium_id)
+  return redirect('characters_detail', character_id=character_id)

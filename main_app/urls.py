@@ -14,5 +14,6 @@ urlpatterns = [
     path('medium/<int:pk>/', views.MediumDetail.as_view(), name='medium_detail'),
     path('mediums/', views.MediumList.as_view(), name='medium_index'),
     path('mediums/<int:pk>/update/', views.MediumUpdate.as_view(), name='medium_update'),
-    path('mediums/<int:pk>/delete/', views.MediumDelete.as_view(), name='medium_delete')
+    path('mediums/<int:pk>/delete/', views.MediumDelete.as_view(), name='medium_delete'),
+    path('characters/<int:character_id>/assoc_medium/<int:medium_id>/', views.assoc_medium, name='assoc_medium')
 ]
