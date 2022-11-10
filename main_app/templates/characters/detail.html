@@ -88,7 +88,7 @@
       <button type="submit" class="btn submit">Add Title</button>
     </form>
   </section>
-  <section class="toys">
+  <section class="mediums">
     <div class="subsection-title">
       <h2>Mediums</h2>
       <img src="{% static 'images/string.svg' %}" alt="A ball of string" />
@@ -110,17 +110,14 @@
           </div>
         {% endfor %}
       {% else %}
-        <p class="no-toys">{{character.name}} doesn't any mediums yet 😞</p>
+        <p class="no-toys">{{character.name}} doesn't have any mediums yet 😞</p>
       {% endif %}
     </div>
     <h3>Available Mediums</h3>
-    <div class="subsection-content">
-      <h3>Available Toys</h3>
       <div class="subsection-content">
-        {% comment %} We'll display available toys here {% endcomment %}
         {% if medium.count %}
           {% for medium in medium.all %}
-            <div class="medium-container">
+            <div class="sig-container">
               <div 
                 class="color-block"
                 style="background-color: {{ medium.color }}"
@@ -135,7 +132,7 @@
             </div>
           {% endfor %}
         {% else %}
-          <p class="all-toys">
+          <p class="all-mediums">
             {{character.name}} already has all the available mediums 🥳
           </p>
         {% endif %}
