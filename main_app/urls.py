@@ -9,5 +9,6 @@ urlpatterns = [
     path('characters/create/', views.CharacterCreate.as_view(), name='characters_create'),
     path('characters/<int:pk>/update', views.CharacterUpdate.as_view(), name='characters_update'),
     path('characters/<int:pk>/delete', views.CharacterDelete.as_view(), name='characters_delete'),
-    path('characters/<int:character_id>/add_title/', views.add_title, name='add_title')
+    path('characters/<int:character_id>/add_title/', views.add_title, name='add_title'),
+    path('medium/create/', views.MediumCreate.as_view(), name='medium_create'),
 ]
