@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 # Create your views here.
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Character
+from .forms import TitleForm
 
 class CharacterCreate(CreateView):
   model = Character
@@ -27,4 +28,13 @@ def characters_index(request):
 
 def characters_detail(request, character_id):
   character = Character.objects.get(id=character_id)
-  return render(request, 'characters/detail.html', {'character' : character})
+  title_form = TitleForm()
+  return render(request, 'characters/detail.html', {'character' : character, 'title_form': title_form})
+
+def add_title(request, character_id):
+  form = TitleForm(request.POST)
+  if form.is_valid():
+    new_title = form.save(commit=False)
+    new_title.character_id = character_id
+    new_title.save()
+  return redirect('characters_detail', character_id=character_id)

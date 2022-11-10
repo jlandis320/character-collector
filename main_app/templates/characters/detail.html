@@ -3,10 +3,20 @@
 
 {% block head %}
 <link 
+  href="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.css" 
+  rel="stylesheet" 
+/>
+<link rel="stylesheet" href="{% static 'css/mcdp.css' %}">
+<script 
+  src="https://cdn.jsdelivr.net/npm/mc-datepicker/dist/mc-calendar.min.js"
+>
+</script>
+<link 
   rel="stylesheet" 
   type="text/css" 
   href="{% static 'css/characters/character-detail.css' %}"
 />
+<script defer src="{% static 'js/character-detail.js' %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -28,24 +38,36 @@
       <a href="{% url 'characters_delete' character.id%}" class="btn danger">Delete</a>
     </div>
   </div>
-</section>
-<div class="title-sig-container">
-  <section class="titles">
-    <div class="subsection-title">
-      <h2>Appears In:</h2>
-      <img 
-        src="{% static 'images/cat-cone.svg' %}" 
-        alt="An ice cream cone cat"
-      />
-      <img 
-        src="{% static 'images/cat-onigiri.svg' %}"
-        alt="A cat as onigiri"
-      />
-      <img 
-        src="{% static 'images/kitty-kabob.svg' %}" 
-        alt="A kabob of kittens"
-      />
+  </section>
+  <div class="title-sig-container">
+    <section class="titles">
+      <div class="subsection-title">
+        <h2>Appears In:</h2>
+        <img 
+          src="{% static 'images/cat-cone.svg' %}" 
+          alt="An ice cream cone cat"
+        />
+        <img 
+          src="{% static 'images/cat-onigiri.svg' %}"
+          alt="A cat as onigiri"
+        />
+        <img 
+          src="{% static 'images/kitty-kabob.svg' %}" 
+          alt="A kabob of kittens"
+        />
     </div>
+    <h3>Add a Title</h3>
+    <form
+      action="{% url 'add_title' character.id %}"
+      method="post" 
+      class="subsection-content"
+    >
+      {% csrf_token %}
+      {{ title_form.as_p }}
+      <button type="submit" class="btn submit">Add Title</button>
+    </form>
+    <h3>Titles</h3>
+    {% comment %} New code above {% endcomment %}
     <table>
       <thead>
         <tr><th>Title</th><th>Release Date</th></tr>
