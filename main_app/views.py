@@ -13,6 +13,10 @@ class CharacterCreate(CreateView):
   model = Character
   fields = ['name', 'media', 'description', 'age', 'pronoun']
 
+  def form_valid(self, form):
+    form.instance.user = self.request.user
+    return super().form_valid(form)
+
 class CharacterUpdate(UpdateView):
   model = Character
   fields = [ 'media', 'description', 'age', 'pronoun']
@@ -39,8 +43,7 @@ class MediumDelete(DeleteView):
   model = Medium
   success_url = '/mediums/'
 
-# def home(request):
-#   return render(request, 'home.html')
+
 
 def about(request):
   return render(request, 'about.html')

@@ -27,11 +27,17 @@
     </div>
     <nav>
       <ul>
+        {% if user.is_authenticated %}
         <li><a href="{% url 'characters_index' %}">All Characters</a></li>
         <li><a href={% url 'medium_index' %}> All Mediums</a></li>
         <li><a href={% url 'characters_create' %}>Add a Character</a></li>
         <li><a href={% url 'medium_create' %}> Add a Medium</a></li>
+        <li><a href={% url 'about' %}>About</a></li>
+        <li><a href={% url 'logout' %}>Log out</a></li>
+        {% else %}
         <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'home' %}"></a>Login</li>
+        {% endif %}
       </ul>
     </nav>
   </header>
