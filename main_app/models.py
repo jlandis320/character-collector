@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Medium(models.Model):
@@ -19,6 +20,7 @@ class Character(models.Model):
   age = models.CharField(max_length=20)
   pronoun = models.CharField(max_length=10)
   medium = models.ManyToManyField(Medium)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
 
   def __str__(self):
     return self.name
